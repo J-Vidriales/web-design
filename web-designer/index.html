@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
+<script src="http://kit.fontawesome.com/b38344e01e.js"></script>
+<link rel="stylesheet" href="http://unpkg.com/aos@next/dist/aos.css"/>
+<link href="https://calendly.com/assests/external/widget.css" rel=stylesheet>
+<script src="https://calendly.com/assets/external/widget.js" type="text/javascript"></script>
+<title></title>
+</head>
+<body>
+
+<header id="home">
+    
+<!-- Menu -->
+    <div class="menu target center">
+      <div class="menu-line menu-line-1"></div>
+      <div class="menu-line menu-line-2"></div>
+    </div>
+    
+<!-- End Menu -->
+
+<!-- Nav -->
+    
+    <nav class="navbar target">
+      <a href="#home" class="navbar-link">Home</a>
+      <a href="#about" class="navbar-link">About</a>
+      <a href="#contact" class="navbar-link">Contact</a>
+    </nav>
+    
+<!-- End Nav
+    
+<!--Portfolio item 1 -->
+    
+  <div class="portfolio"> 
+    <div class="portfolio-card">
+       <h1>Web Developer</h1>
+       <p>I am located in the city of Paramount California. I am currently accepting <span class="spn">small business projects</span> at this time. Feel free to contact me.</p>
+       <time id="time"></time>
+    </div>
+   </div>
+    
+</header> 
+<div class="loading-text">0%</div>
+    
+<!--End Portfolio-->
+ 
+<!-- About -->  
+     
+<!-- Boxes Section -->
+
+<section class="section-about" id="about">
+ <h1 data-aos="fade-up">Web Design</h1>   
+<div class="boxes">
+	<div class="boxer">
+	  <i class="fas fa-male"></i> 
+	  <h3>About</h3>
+	  <p>My name is Jesse Vidriales I am a graduate of Cal Poly Pomona in the field of Sociology with an emphasize on Social Work. I am married and have to beautiful little daughters. Hobbies include hiking and reading. </p>
+	</div>
+	<div class="boxer">
+	  <i class="fas fa-database"></i>
+	  <h3>Website</h3>
+	  <p>Having a website in today's world is very important. A website is basically a showcase of what it is that you do. It shows the person looking at it who you are and what it is you do. Most importantly it shows them the work you do.</p>
+	</div>
+	<div class="boxer">
+      <i class="fas fa-laptop-code"></i>
+	  <h3>Web Design</h3>
+	  <p>My main focus is working on small business websites to get you going. I am proficient in HTML5, CSS3, Javascript, and responsive design. I am available pretty much everyday. Feel free to call me or if you prefer send a text message and I will respond as soon as possible. </p>
+	</div>
+</div>
+    
+</section>
+    
+ <!-- End About -->    
+    
+<!--Contact-->
+    
+<section class="sec-contact" id="contact">
+ <h2 class="contact-header" data-aos="fade-up">Contact</h2>
+  <div class="wrapper-contact" data-aos="fade-up">
+       <div class="company-info">
+            <p><i class="fa fa-phone"></i>(555) 555-5555</p>
+       </div>
+  <div class="contact">
+        <h3>Email Us</h3>
+        <div class="alert">Your message has been sent</div>
+    <form action="contact-form" id="contactForm">
+      <p>
+         <label>Name</label>
+         <input type="text" id="name" name="name" id="name" required>
+      </p>
+      <p>  
+         <label>Subject</label>
+          <input type="text" id="subject" name="subject" id="subject">
+      </p>
+      <p>  
+         <label>Email Address</label>
+          <input type="email" id="email" name="email" id="email" required>
+      </p>
+       <p>  
+         <label>Phone Number</label>
+          <input type="text" name="phone" id="phone">
+      </p>
+        
+      <p class="full"> <label>Message</label>
+          <textarea id="msg" name="message" rows="5" id="message"></textarea>
+      </p>
+      <p class="full">
+        <button type="submit">Submit</button> 
+      </p>
+      </form>
+  </div>
+ </div>
+</section> 
+    
+<!--End COntact-->
+    
+<!--Footer-->
+    
+<footer>
+      <div class="social">
+         <div class="media">
+            <i class="fab fa-facebook"></i>
+          </div>
+           <div class="media">
+            <i class="fab fa-instagram-square"></i>
+          </div> 
+          <div class="media">
+             <i class="fab fa-twitter-square"></i>
+          </div> 
+      </div>
+      <p>Jess-V &copy; 2021</p>
+</footer>
+    
+<!--End Footer-->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+<script src="http://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script>
+   AOS.init({
+        offset: 400,
+        duration: 1000
+    }); 
+    
+    
+ document.querySelector(".menu").addEventListener("click", () => {
+  document.querySelectorAll(".target").forEach((item) => {
+    item.classList.toggle("change");
+  });
+});
+
+document.querySelectorAll(".wrapper").forEach((item) => {
+  item.addEventListener("click", () => {
+    document.querySelectorAll(".target").forEach((item) => {
+      item.classList.remove("change");
+    });
+  });
+});
+    
+// Blur
+    
+const loadText = document.querySelector('.loading-text')
+const header = document.querySelector('header')
+
+let load = 0
+
+let int = setInterval(blurring, 10)
+
+function blurring() {
+  load++
+
+  if (load > 99) {
+    clearInterval(int)
+  }
+  
+    loadText.innerText = `${load}%`
+    loadText.style.opacity = scale(load, 0, 100, 1, 0)
+    header.style.filter = `blur(${scale(load, 0, 100, 30, 0)}px)`
+}
+
+// https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
+const scale = (num, in_min, in_max, out_min, out_max) => {
+  return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+}     
+    
+
+/* Navbar */
+
+
+
+/* End Navbar */  	
+
+    
+// Email 
+/*
+function showMessage() {
+  
+var name = document.getElementById('name').value;
+	
+var mainEmail = 'Jesse.vidriales@gmail.com';
+	
+var subject = document.getElementById('subject').value;
+	
+var body_start = document.getElementById('msg').value;
+	
+console.info('Name ->' +name);
+console.info('Message ->' +body_start);
+	
+var mailto_link='mailto:'+mainEmail+'?subject='+subject+'&body='+body_start;
+	
+window.open(mailto_link, 'emailWin');
+
+}
+*/   
+    
+    
+//Scroll
+    
+const menuLine1 = document.querySelector('.menu-line-1'); 
+const menuLine2 = document.querySelector('.menu-line-2'); 
+    
+function bgChanger() {
+	if(this.scrollY > this.innerHeight / 1.3 ) {
+		menuLine1.classList.add('bg-active'),
+        menuLine2.classList.add('bg-active')
+	} else {
+		menuLine1.classList.remove('bg-active'),
+        menuLine2.classList.remove('bg-active')
+	}
+}
+   window.addEventListener('scroll', bgChanger)     
+    
+    
+
+//Clock
+    
+//DOM element
+const time = document.getElementById('time');
+		  
+//Option 
+const showAmPm = true;
+	
+//Show Time
+function showTime(){
+	let today = new Date()
+	hour = today.getHours()
+	min = today.getMinutes();
+	sec = today.getSeconds();
+
+
+//Set Am Pm
+const amPm = hour >= 12 ? 'PM' : 'AM'
+	
+//12 hr Format
+hour = hour % 12 || 12
+
+//Output Time
+time.innerHTML = `${hour}<span>:</span> ${addZero(min)}<span>:</span>
+${addZero(sec)} ${showAmPm ? amPm : ''}`;
+
+setTimeout(showTime, 1000)
+}
+
+//Add zeros
+function addZero(n){
+	return (parseInt(n, 10) < 10 ? '0' : '')+ n
+}
+	
+//Run
+
+showTime()
+    
+    
+    
+    
+ /* Drop down */
+
+/*	
+var parent = document.querySelector('.modal-parent'),
+   Btn= document.querySelector(".btn-contact"),
+   X = document.querySelector(".X"),
+   section = document.querySelector('section')
+	
+Btn.addEventListener('click', appear);
+	
+function appear() {
+	parent.style.display = 'block';
+	section.style.filter = "blur(5px)"
+}
+
+X.addEventListener('click', disappearX);
+function disappearX() {
+	parent.style.display = "none";
+	section.style.filter = "blur(0px)"
+}
+	
+parent.addEventListener('click', disappearParent)
+function disappearParent(e){
+	if(e.target.className == "modal-parent") {
+		parent.style.display = "none";
+	    section.style.filter = "blur(0px)"
+	}
+}  
+*/  
+    
+    
+/* Brad */
+
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyBzBRnzmD7dPsPbp6k5zzZ7itY-sV_zves",
+    authDomain: "contact-form-a3b4b.firebaseapp.com",
+    projectId: "contact-form-a3b4b",
+    storageBucket: "contact-form-a3b4b.appspot.com",
+    messagingSenderId: "614399284775",
+    appId: "1:614399284775:web:5d10ebfa14bdfbb27c2002"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+// Reference Messages collection
+var messagesRef = firebase.database().ref('messages');
+    
+// Reference message collection
+var messagesRef = firebase.database().ref('messages');
+    
+// Listen for form submit
+document.getElementById('contactForm').addEventListener('submit', submitForm)    
+ 
+//Submit form
+ function submitForm(e){
+     e.preventDefault();
+     
+     // Get values
+     var name = getInputVal('name');
+     var subject= getInputVal('subject');
+     var email= getInputVal('email');
+     var phone= getInputVal('phone');
+     var message = getInputVal('message');
+     
+     // Save message
+     saveMessage(name, subject, email, phone, message);
+     
+     //Show alert
+     document.querySelector('.alert').style.display = 'block';
+     
+     //Hide alert after 3 seconds
+     setTimeout(function(){
+     document.querySelector('.alert').style.display = 'none';   
+     },3000);
+     
+     //clear form
+     document.getElementById('contactForm').reset();
+     
+ }   
+    
+// Function to get form values
+function getInputVal(id){
+    return document.getElementById(id).value;
+}
+    
+// Save message to firebase
+function saveMessage(name, subject, email, phone, message){
+    var newMessageRef = messagesRef.push();
+    newMessageRef.set({
+        name: name,
+        subject:subject,
+        email:email,
+        phone:phone,
+        message:message
+    });
+}
+    
+    
+    
+    
+    
+
+</script>
+
+	
+	  
+	
+	
+	
+</body>
+	
+</html>
